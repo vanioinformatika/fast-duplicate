@@ -1,7 +1,7 @@
 {
   "name": "fast-duplicate",
   "main": "./lib/fast-duplicate",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Easily duplicate selected line, below or above, with keyboard shortcut, Netbeans like",
   "activationCommands": {
     "atom-workspace": "fast-duplicate:toggle"

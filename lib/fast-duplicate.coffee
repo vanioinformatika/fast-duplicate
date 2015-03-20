@@ -2,7 +2,6 @@ getCursors = (editor) ->
 
     cursors = for cursor in editor.getCursorBufferPositions()
       do (cursor) ->
-        console.log(cursor)
         return cursor
 
     return cursors
@@ -18,8 +17,15 @@ getTexts = (editor) ->
 
     return texts
 
-# TODO: add new line if last or first line
-# TODO: mantain cursor position on duplicated lines
+hasSelectionAtLastLine = (editor) ->
+    editor.selectLinesContainingCursors()
+    hasLast = false
+    for sel in editor.getSelections()
+      do (sel) ->
+        hasLast = hasLast || (sel.getBufferRowRange()[1]+1 == editor.getLineCount())
+
+    return hasLast
+
 
 module.exports =
   activate: (state) ->
@@ -27,14 +33,18 @@ module.exports =
     atom.commands.add 'atom-workspace', "fast-duplicate:duplicate-up", => @up()
   down: ->
     editor = atom.workspace.activePaneItem
-    cursors = getCursors(editor)
-    texts = getTexts(editor)
+    editor.duplicateLines()
+    # cursors = getCursors(editor)
+    # texts = getTexts(editor)
+    # hasLastLine = hasSelectionAtLastLine(editor)
+    # texts = getTexts(editor)
+    #
+    # editor.moveRight()
+    #
+    # for sel, i in editor.getSelections()
+    #   do (sel) ->
+    #     sel.insertText(texts[i])
 
-    editor.moveRight()
-
-    for sel, i in editor.getSelections()
-      do (sel) ->
-        sel.insertText(texts[i])
   up: ->
     editor = atom.workspace.activePaneItem
     cursors = getCursors(editor)
@@ -45,3 +55,7 @@ module.exports =
     for sel, i in editor.getSelections()
       do (sel) ->
         sel.insertText(texts[i])
+
+    for cursor, i in editor.getCursors()
+      do (cursor) ->
+        cursor.setBufferPosition([cursor.getBufferPosition().row-1, cursors[i].column])

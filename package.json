@@ -1,17 +1,19 @@
 {
   "name": "fast-duplicate",
   "main": "./lib/fast-duplicate",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Easily duplicate selected line, below or above, with keyboard shortcut, Netbeans like",
   "activationCommands": {
     "atom-workspace": "fast-duplicate:toggle"
   },
-  "activationEvents": ["fast-duplicate:duplicate-down","fast-duplicate:duplicate-up"],
+  "activationEvents": [
+    "fast-duplicate:duplicate-down",
+    "fast-duplicate:duplicate-up"
+  ],
   "repository": "https://github.com/garralab/fast-duplicate",
   "license": "MIT",
   "engines": {
     "atom": ">=0.174.0 <2.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

@@ -7,7 +7,7 @@
     "atom-workspace": "fast-duplicate:toggle"
   },
   "activationEvents": ["fast-duplicate:duplicate-down","fast-duplicate:duplicate-up"],
-  "repository": "https://github.com/atom/fast-duplicate",
+  "repository": "https://github.com/garralab/fast-duplicate",
   "license": "MIT",
   "engines": {
     "atom": ">=0.174.0 <2.0.0"

@@ -1,10 +1,9 @@
 getCursors = (editor) ->
 
-    cursors = for sel in editor.getSelections()
-      do (sel) ->
-        sel.selectLine(sel.getBufferRowRange()[0])
-        sel.selectLine(sel.getBufferRowRange()[1])
-        return sel.getText()
+    cursors = for cursor in editor.getCursorBufferPositions()
+      do (cursor) ->
+        console.log(cursor)
+        return cursor
 
     return cursors
 
@@ -18,6 +17,9 @@ getTexts = (editor) ->
         return sel.getText()
 
     return texts
+
+# TODO: add new line if last or first line
+# TODO: mantain cursor position on duplicated lines
 
 module.exports =
   activate: (state) ->

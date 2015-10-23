@@ -32,7 +32,7 @@ module.exports =
     atom.commands.add 'atom-workspace', "fast-duplicate:duplicate-down", => @down()
     atom.commands.add 'atom-workspace', "fast-duplicate:duplicate-up", => @up()
   down: ->
-    editor = atom.workspace.activePaneItem
+    editor = atom.workspace.paneContainer.activePane.activeItem
     editor.duplicateLines()
     # cursors = getCursors(editor)
     # texts = getTexts(editor)
@@ -46,7 +46,7 @@ module.exports =
     #     sel.insertText(texts[i])
 
   up: ->
-    editor = atom.workspace.activePaneItem
+    editor = atom.workspace.paneContainer.activePane.activeItem
     cursors = getCursors(editor)
     texts = getTexts(editor)
 
